@@ -1,13 +1,13 @@
-package com.example.Assignment_11;
+package com.example.Book.Library;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Assignment11Application {
+public class BookLibraryApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Assignment11Application.class, args);
+		SpringApplication.run(BookLibraryApplication.class, args);
 	}
 
 }
