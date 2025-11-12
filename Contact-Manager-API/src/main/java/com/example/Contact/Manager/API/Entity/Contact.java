@@ -27,7 +27,7 @@ public class Contact {
 
     private Boolean isActive;
 
-    private String category; // e.g. work, school, family, client
+    private String category; 
 
     private LocalDateTime creationDate;
 }
