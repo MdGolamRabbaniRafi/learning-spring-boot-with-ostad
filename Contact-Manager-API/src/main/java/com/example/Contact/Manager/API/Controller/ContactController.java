@@ -18,14 +18,12 @@ import java.util.List;
 public class ContactController {
     private final ContactService service;
 
-    // 1. Create a new contact
     @PostMapping
     public ResponseEntity<Contact> create(@RequestBody Contact contact){
         Contact saved = service.save(contact);
         return ResponseEntity.ok(saved);
     }
 
-    // 2. Get a contact by ID
     @GetMapping("/{id}")
     public ResponseEntity<Contact> getById(@PathVariable Long id){
         return service.findById(id)
@@ -33,7 +31,6 @@ public class ContactController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // 3. Search contacts by first name (case-insensitive)
     @GetMapping("/search/name")
     public ResponseEntity<Page<Contact>> searchByName(
             @RequestParam String name,
@@ -46,13 +43,11 @@ public class ContactController {
     }
 
 
-    // 4. Count inactive contacts
     @GetMapping("/count-inactive")
     public ResponseEntity<Long> countInactive(){
         return ResponseEntity.ok(service.countInactive());
     }
 
-    // 5. Get contacts by category (projection: firstName, email)
     @GetMapping("/search/category")
     public ResponseEntity<Page<ContactProjection>> byCategory(
             @RequestParam String category,
@@ -65,7 +60,6 @@ public class ContactController {
     }
 
 
-    // 6. Retrieve all active contacts using pagination
     @GetMapping("/active/page")
     public ResponseEntity<Page<?>> activePage(@RequestParam(defaultValue = "0") int page,
                                               @RequestParam(defaultValue = "10") int size,
@@ -80,14 +74,12 @@ public class ContactController {
         }
     }
 
-    // 7. Delete all contacts whose phone number starts with a prefix
     @DeleteMapping("/delete-by-prefix")
     public ResponseEntity<Void> deleteByPrefix(@RequestParam String prefix){
         service.deleteByPhonePrefix(prefix);
         return ResponseEntity.noContent().build();
     }
 
-    // 8. Add multiple contacts at once (bulk insert)
     @PostMapping("/mass")
     public ResponseEntity<List<Contact>> massInsert(@RequestBody List<Contact> contacts){
         List<Contact> saved = service.saveAll(contacts);
@@ -96,4 +88,3 @@ public class ContactController {
 
 }
 
-// 4.
